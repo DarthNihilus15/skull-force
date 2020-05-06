@@ -209,11 +209,22 @@ function startGame () {
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-    controller.moveSprite(Skull_Trooper, 100, 100)
+    controller.moveSprite(Skull_Trooper, 100, 0)
     Skull_Trooper.ay = 400
     scene.cameraFollowSprite(Skull_Trooper)
     tiles.placeOnRandomTile(Skull_Trooper, myTiles.tile5)
+    setNumJumps = 0
+    info.setScore(0)
+    info.setLife(3)
 }
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (numJumps < 2) {
+        Skull_Trooper.vy = -200
+        numJumps += 1
+    }
+})
+let numJumps = 0
+let setNumJumps = 0
 let Skull_Trooper: Sprite = null
 scene.setBackgroundImage(img`
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
@@ -340,3 +351,6 @@ f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 game.showLongText("Use W,A,S,D or Arrow keys to move. Use Z(A) button to shoot and X(B) to Jump. ", DialogLayout.Bottom)
 game.showLongText("Try to get as many kills as possible. Good Luck.", DialogLayout.Bottom)
 startGame()
+forever(function () {
+	
+})
